@@ -37,5 +37,4 @@ spec:
         image: busybox
         command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
       restartPolicy: Always
-
 status: {}

@@ -46,6 +46,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.service.expose: "{{ .Values.DNS_NAME }}"
       kompose.service.type: "nodeport"
+      kompose.service.nodeport.port: "30001"
   tracing-server:
     image: openzipkin/zipkin
     environment:

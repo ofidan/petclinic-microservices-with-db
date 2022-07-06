@@ -12,21 +12,20 @@ pipeline {
         stage('Create ECR Repo') {
             steps {
                 echo "Creating ECR Repo for ${APP_NAME} app"
-                sh """
-                aws ecr describe-repositories --region 'us-east-1' --repository-name 'oliver-test-repo/test-app-dev'
-
+                sh '''
+                aws ecr describe-repositories --region ${AWS_REGION} --repository-name ${APP_REPO_NAME} || \
                 if [[ $(echo $?) -eq 0 ]]
                     then
                        	echo "ecr repo already created"
 
                        else
                          aws ecr create-repository \
-                         --repository-name $APP_REPO_NAME \
+                         --repository-name ${APP_REPO_NAME} \
                          --image-scanning-configuration scanOnPush=true \
                          --image-tag-mutability MUTABLE \
-                         --region $AWS_REGION
+                         --region ${AWS_REGION}
                     fi
-                """
+                '''
             }
         }
     }

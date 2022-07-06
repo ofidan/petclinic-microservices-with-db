@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo "Creating ECR Repo for ${APP_NAME} app"
                 sh """
-                aws ecr describe-repositories --region ${AWS_REGION} --repository-name ''oliver-test-repo/${APP_NAME}-app-dev'
+                aws ecr describe-repositories --region ${AWS_REGION} --repository-name 'oliver-test-repo/${APP_NAME}-app-dev'
 
                 if [[ $(echo $?) -eq 0 ]]
                     then
